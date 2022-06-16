@@ -1,0 +1,344 @@
+/************************** CSS Reset  **************************/
+:root {
+  /* Colours */
+  --cream: 13, 73%, 93%;
+  --pale-pink: 9, 72%, 86%;
+  --coral: 8, 79%, 66%;
+  --lilac: 239, 43%, 33%;
+  --navy: 236, 60%, 20%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: hsl(var(--cream));
+  color: hsl(var(--navy));
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/************************** CSS Reset  **************************/
+
+/************************** Utilities  **************************/
+
+/* Container */
+
+.container {
+  margin-top: 3.5rem;
+  margin-inline: 1rem;
+  padding: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justifiy-content-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.gap {
+  gap: var(--gap, 1rem);
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.padding-inline-1 {
+  padding-inline: 1rem;
+}
+
+.margin-block-1 {
+  margin-block: 1rem;
+}
+
+.error {
+  background-color: tomato;
+  color: white;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: bold;
+  max-width: 400px;
+  margin-bottom: 18px;
+}
+/************************** Utilities  **************************/
+
+/************************** Components  **************************/
+/* Navbar */
+.navbar {
+  background-color: hsl(var(--lilac));
+  color: hsl(var(--pale-pink));
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  z-index: 2;
+}
+
+.logo {
+  font-size: 0.5rem;
+  margin-inline: 1rem;
+  text-align: center;
+}
+.logo a {
+  color: hsl(var(--pale-pink));
+  letter-spacing: 0.4rem;
+}
+
+.hamburger {
+  cursor: pointer;
+}
+.hamburger:hover,
+.hamburger:focus {
+  color: hsl(var(--coral));
+}
+
+.searchbar input,
+.sign-in input {
+  background: transparent;
+  border: 1px solid hsl(var(--pale-pink));
+  color: hsl(var(--pale-pink));
+  margin-right: 0.5rem;
+}
+.searchbar input:focus {
+  outline: none;
+  border-color: hsl(var(--coral));
+}
+
+.navbar .button {
+  display: none;
+}
+.button a {
+  background: transparent;
+  border: 1px solid hsl(var(--pale-pink));
+  color: hsl(var(--pale-pink));
+  cursor: pointer;
+}
+
+.button a:hover,
+.button a:focus {
+  color: hsl(var(--coral));
+  border-color: hsl(var(--coral));
+}
+
+.button a span {
+  margin-left: 0.5rem;
+}
+
+/* Sidebar */
+.sidebar {
+  display: none;
+}
+.sidebar,
+.mobile-navigation {
+  background-color: hsl(var(--lilac));
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 4rem;
+  padding-top: 5rem;
+}
+
+.sidebar li,
+.mobile-navigation li {
+  margin-top: 3rem;
+}
+
+.sidebar a,
+.mobile-navigation a {
+  color: hsl(var(--pale-pink));
+}
+.sidebar a:hover,
+.sidebar a:focus,
+.mobile-navigation a:focus {
+  color: hsl(var(--coral));
+}
+
+/* Mobile Navigation */
+.mobile-navigation {
+  height: 100vh;
+  width: 10rem;
+  transform: translateX(-1000rem);
+}
+
+.mobile-navigation .button {
+  margin-top: 2rem;
+}
+.mobile-navigation .button a {
+  padding: 0.5rem;
+}
+
+/* Article */
+.article {
+  margin-block: 1rem;
+  border-bottom: 2px solid hsl(var(--coral));
+}
+.article p {
+  margin-block: 1rem;
+}
+.article img {
+  margin-top: 1rem;
+}
+
+/************************** Components  **************************/
+
+/************************** Section Specific  **************************/
+.sign-in {
+  padding-top: 10rem;
+}
+
+.sign-in .container {
+  border: none;
+  --gap: 2rem;
+  justify-items: flex-start;
+}
+.sign-in .button {
+  border: none;
+  background-color: hsl(var(--lilac));
+  color: hsl(var(--cream));
+  cursor: pointer;
+  width: 20rem;
+  padding: 0.7rem;
+}
+
+.sign-in .button:hover {
+  background-color: hsl(var(--navy));
+}
+
+.sign-in input {
+  border: 1px solid hsl(var(--lilac));
+  color: hsl(var(--navy));
+  width: 20rem;
+  padding: 0.7rem;
+}
+.sign-in input:focus {
+  border: 1px solid hsl(var(--navy));
+  outline: none;
+}
+
+.content-management-section input {
+  border: none;
+  color: hsl(var(--lilac));
+  display: block;
+  width: 100%;
+  margin-block: 1rem;
+  padding: 1rem;
+}
+
+/* CMS textarea */
+.content-management-section .cms-text-area {
+  border: none;
+  margin-block: 1rem;
+  width: 100%;
+  height: 50vh;
+  color: hsl(var(--lilac));
+  padding: 1rem;
+  font-size: 1rem;
+  resize: none;
+}
+.content-management-section .cms-text-area {
+  border: none;
+  margin-block: 1rem;
+  width: 100%;
+}
+
+.content-management-section input:focus,
+.content-management-section .cms-text-area:focus {
+  outline: none;
+  border: 1px solid hsl(var(--lilac));
+}
+.content-management-section .button {
+  padding: 1rem;
+  border: none;
+  margin-right: 1rem;
+  background-color: hsl(var(--lilac));
+  color: hsl(var(--pale-pink));
+  cursor: pointer;
+}
+.content-management-section .button#post-button {
+  background-color: hsl(var(--coral));
+  color: hsl(var(--lilac));
+}
+/************************** Section Specific  **************************/
+
+/************************** Media Querires  **************************/
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+    width: 5rem;
+  }
+  .navbar .button {
+    display: block;
+  }
+  .hamburger {
+    display: none;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .logo a {
+    color: hsl(var(--pale-pink));
+    letter-spacing: 0.4rem;
+  }
+
+  .searchbar input {
+    width: 30rem;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .button a {
+    padding: 0.3rem 1rem;
+  }
+
+  /* Section Specific */
+  .home-section,
+  .sign-in,
+  .content-management-section,
+  .html-section,
+  .css-section,
+  .javascript-section {
+    margin-left: 6rem;
+    margin-right: 1rem;
+  }
+}
+@media (min-width: 750px) {
+  .logo {
+    font-size: 1rem;
+  }
+
+  .searchbar input {
+    width: 20rem;
+    padding: 0.4rem;
+    font-size: 1rem;
+  }
+}
+/************************** Media Querires  **************************/
