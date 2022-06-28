@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { db, auth } from "../firebase-config";
+import { db } from "../firebase-config";
+import EditableParagraph from "./EditableParagraph";
 
 export default function ContentManagement() {
   const [title, setTitle] = useState("");
@@ -8,21 +9,46 @@ export default function ContentManagement() {
   const [category, setCategory] = useState("");
   const [articleDate, setArticleDate] = useState("");
   const [imageURL, setImageURL] = useState("");
-  const [content, setContent] = useState("");
+  const [contents, setContents] = useState([]);
 
   const formRef = useRef();
+  const contentRef = useRef();
 
   const postsCollectionRef = collection(db, "posts");
 
-  const createPost = async () => {
+  // const createPost = async () => {
+  //   await addDoc(postsCollectionRef, {
+  //     title,
+  //     category,
+  //     articleDate,
+  //     imageURL,
+  //     author: { name, id: auth.currentUser.uid },
+  //   });
+  // };
+
+  const pushToDatabase = async (postsArray) => {
     await addDoc(postsCollectionRef, {
       title,
       category,
       articleDate,
       imageURL,
-      content,
-      author: { name, id: auth.currentUser.uid },
+      author: name,
+      content: postsArray,
     });
+  };
+
+  const createPost = (content) => {
+    const arr = [...content];
+    let posts = [];
+    arr.forEach((c) => posts.push(c.textContent));
+    return posts;
+  };
+  // Use this function as a callback
+  const addParagraph = () => {
+    setContents((prevCont) => [
+      ...prevCont,
+      <EditableParagraph key={contents.length} />,
+    ]);
   };
 
   useEffect(() => {
@@ -36,6 +62,7 @@ export default function ContentManagement() {
         setCategory("");
         setArticleDate("");
         setImageURL("");
+        setContents([]);
 
         return;
       }
@@ -87,11 +114,16 @@ export default function ContentManagement() {
             value={imageURL}
             onChange={(e) => setImageURL(e.target.value)}
           />
-          <textarea
-            className="cms-text-area"
-            onChange={(e) => setContent(e.target.value)}
-            value={content}
-          />
+          <button
+            id="add-paragraph-button"
+            className="button"
+            onClick={(e) => {
+              e.preventDefault();
+              addParagraph();
+            }}
+          >
+            Add Paragraph
+          </button>
           <button id="clear-fields" className="button">
             Clear Fields
           </button>
@@ -100,7 +132,7 @@ export default function ContentManagement() {
             className="button"
             onClick={(e) => {
               e.preventDefault();
-              createPost()
+              pushToDatabase(createPost(contentRef.current.children))
                 .then(() => {
                   window.history.pushState({}, "", "/");
                   const nav = new PopStateEvent("popstate");
@@ -111,6 +143,11 @@ export default function ContentManagement() {
           >
             Post
           </button>
+          {/* Paragraphs section */}
+
+          <div id="content-paragraph-section" ref={contentRef}>
+            {contents}
+          </div>
         </form>
       </div>
     </div>

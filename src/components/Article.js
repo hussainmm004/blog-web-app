@@ -9,13 +9,17 @@ export default function Article({ postsList }) {
       <div key={index} className="article">
         <ArticleHeader
           title={post.title.toUpperCase()}
-          author={post.author.name.toUpperCase()}
+          author={post.author.toUpperCase()}
           category={post.category.toUpperCase()}
           date={post.articleDate}
         />
         <ArticleImage src={post.imageURL} />
         <main>
-          <ArticleParagraph>{post.content}</ArticleParagraph>
+          {post.content.map((p, i) => {
+            return (
+              <ArticleParagraph key={`paragraph-${i}`}>{p}</ArticleParagraph>
+            );
+          })}
         </main>
       </div>
     );

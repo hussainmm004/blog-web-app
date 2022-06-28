@@ -285,6 +285,26 @@ img {
   background-color: hsl(var(--coral));
   color: hsl(var(--lilac));
 }
+
+#content-paragraph-section {
+  overflow: scroll;
+  overscroll-behavior: contain;
+  border: 1px solid hsl(var(--navy));
+  background-color: seashell;
+  margin-block: 1rem;
+  height: 70vh;
+  padding-inline: 5rem;
+}
+
+#editable-paragraph {
+  border: 1px solid hsl(var(--navy));
+  margin-block: 1rem;
+  height: 13rem;
+  overflow: scroll;
+  overscroll-behavior: contain;
+  padding: 0.5rem;
+}
+
 /************************** Section Specific  **************************/
 
 /************************** Media Querires  **************************/
